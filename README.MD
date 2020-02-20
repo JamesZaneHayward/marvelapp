@@ -40,3 +40,4 @@ Here is a list of next steps and issues identified which would be fixed as the n
 [ ] Add click-through to details page from comic list<br/>
 [ ] Fix search filter not applying on refresh<br/>
 [ ] Fix background resizing on soft keyboard open<br/>
+[ ] Cache comics list for better user experience<br/>
