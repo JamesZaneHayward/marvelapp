@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">marvelapp</string>
+    <string name="title_comics_list">Marvel Comics</string>
+    <string name="title_random_comic">Random Hero</string>
+    <string name="random_btn_text">Find a random Super Hero!</string>
+    <string name="marvel_attribution">Data provided by Marvel. © 2020 MARVEL</string>
+    <string name="search">Search</string>
+</resources>

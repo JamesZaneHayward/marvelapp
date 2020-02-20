@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_small"
+    android:background="@android:color/white"
+    android:minHeight="@dimen/cell_comic_height"
+    app:cardCornerRadius="@dimen/cardview_corner_radius">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/padding_medium"
+        android:paddingBottom="@dimen/padding_medium"
+        android:minHeight="@dimen/cell_comic_height">
+
+        <ImageView
+            android:id="@+id/cell_comic_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/cell_comic_primary_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text_size_cell_primary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cell_comic_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Primary text goes here" />
+
+        <TextView
+            android:id="@+id/cell_comic_secondary_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text_size_cell_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cell_comic_image"
+            app:layout_constraintTop_toBottomOf="@id/cell_comic_primary_text"
+            tools:text="Secondary text goes here" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+

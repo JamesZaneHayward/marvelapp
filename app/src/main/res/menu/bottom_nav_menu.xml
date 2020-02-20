@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_comics_list"
+        android:icon="@drawable/ic_comics_list"
+        android:title="@string/title_comics_list" />
+
+    <item
+        android:id="@+id/navigation_random_hero"
+        android:icon="@drawable/ic_random_comic"
+        android:title="@string/title_random_comic" />
+
+</menu>
