@@ -1,6 +1,6 @@
 # Marvel App
 The original tech test design looked like a stock app from android studio so I have taken some liberties with the design to bring it more inline with the Marvel style. Primarily using Red and White to match with the iconic Marvel logo.<br/><br/>
-A simple multi-screen app using Marvel's open API, using Kotlin and Clean Architecture. <br/>**Requires a local `keys.properties` file with a MARVEL_SECRET_KEY and MARVEL_PUBLIC_KEY to function. The app will not compile without this file.**
+A simple multi-screen app using Marvel's open API, using Kotlin and Clean Architecture. <br/>**Requires a local `keys.properties` file with a MARVEL_SECRET_KEY and MARVEL_PUBLIC_KEY to function. The app will not compile without this file.** https://developer.marvel.com/ Keys can be obtained from this link. 
 
 ## Purpose
 This has been built to display technical proficiency, covers some of the most requested features in tech tests.<br/>
