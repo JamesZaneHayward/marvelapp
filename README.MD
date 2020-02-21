@@ -9,6 +9,9 @@ Including, but not limited to:<br/>
 <br/>-Second fragment calling a second API endpoint
 <br/>-Test suite (Unit tests and UI tests)
 
+## Demo gif of the app for those who do not wish to acquire a key
+![Marvelapp Demo](demo/marvelapp_demo.gif)
+
 ## Architecture
 MVVM, Clean Architecture. <br/>
 Models are used to define the data structure of the data used in the app, Comic and Hero are data classes containing the necessary data that gets mapped from the JSON. <br/>
