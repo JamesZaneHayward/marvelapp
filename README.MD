@@ -14,7 +14,7 @@ Including, but not limited to:<br/>
 <br/>-Second fragment calling a second API endpoint
 <br/>-Test suite (Unit tests and UI tests)
 
-## Demo gif of the app for those who do not wish to acquire a key
+## Demo gif of the app
 ![Marvelapp Demo](demo/marvelapp_demo.gif)
 
 ## Architecture
