@@ -1,8 +1,8 @@
 package com.jameshayward.marvelapp.domain.comicslist.repository
 
 import com.jameshayward.marvelapp.domain.comic.Comic
-import io.reactivex.Observable
+import io.reactivex.Single
 
 interface ComicsListRepositoryInterface {
-    fun observeComics(): Observable<List<Comic>>
+    fun getComics(): Single<List<Comic>>
 }

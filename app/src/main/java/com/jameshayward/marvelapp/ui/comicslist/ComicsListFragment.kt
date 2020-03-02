@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.jameshayward.marvelapp.presentation.comicslist.ComicsListViewModel
 import com.jameshayward.marvelapp.R
 import com.jameshayward.marvelapp.presentation.common.ViewModelFactory
@@ -36,7 +35,6 @@ class ComicsListFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        super.onViewCreated(view, savedInstanceState)
 
         comicsListViewModel.comicsList.observe(this, Observer {
             comicsAdapter.items = it
@@ -47,9 +45,8 @@ class ComicsListFragment : DaggerFragment() {
             layoutComics.isRefreshing = it
         })
 
-        comicsAdapter = ComicListAdapter(comicsListViewModel.comicsList.value!!, context!!)
+        comicsAdapter = ComicListAdapter(comicsListViewModel.comicsList.value!!, requireContext())
 
-        recyclerComics.layoutManager = LinearLayoutManager(context)
         recyclerComics.adapter = comicsAdapter
 
         search_comics.imeOptions = EditorInfo.IME_ACTION_DONE

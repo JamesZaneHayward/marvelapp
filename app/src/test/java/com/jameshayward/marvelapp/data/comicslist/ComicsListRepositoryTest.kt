@@ -1,12 +1,13 @@
 package com.jameshayward.marvelapp.data.comicslist
 
+import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jameshayward.marvelapp.domain.comic.Comic
 import com.jameshayward.marvelapp.domain.comic.Thumbnail
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
-import io.reactivex.Observable
+import io.reactivex.Single
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -39,14 +40,21 @@ class ComicsListRepositoryTest {
                 any(),
                 any()
             )
-        } returns Observable.just(Datum(Results(emptyArray())))
+        } returns Single.just(Datum(Results(emptyList())))
 
-        var observableComics: List<Comic> = listOf(Comic(0, "", 0, "desc", Thumbnail("", "")))
-        repository.observeComics().subscribe { observableComics = it }
+        var listOfComics: List<Comic> = listOf(Comic(0, "", 0, "desc", Thumbnail("", "")))
+        repository
+            .getComics()
+            .subscribe(
+                { listOfComics = it },
+                { throwable ->
+                    Log.d("error", throwable.message)
+                }
+            )
 
         val emptyList: List<Comic> = emptyList()
 
-        assertEquals(emptyList, observableComics)
+        assertEquals(emptyList, listOfComics)
     }
 
     @Test
@@ -75,10 +83,10 @@ class ComicsListRepositoryTest {
                 any(),
                 any()
             )
-        } returns Observable.just(
+        } returns Single.just(
             Datum(
                 Results(
-                    arrayOf(
+                    listOf(
                         Comic(0, "comic", 1, "", Thumbnail("", "")),
                         Comic(
                             1,
@@ -99,9 +107,16 @@ class ComicsListRepositoryTest {
             )
         )
 
-        var observableComics: List<Comic> = listOf(Comic(0, "", 0, "desc", Thumbnail("", "")))
-        repository.observeComics().subscribe { observableComics = it }
+        var listOfComics: List<Comic> = listOf(Comic(0, "", 0, "desc", Thumbnail("", "")))
+        repository
+            .getComics()
+            .subscribe(
+                { listOfComics = it },
+                { throwable ->
+                    Log.d("error", throwable.message)
+                }
+            )
 
-        assertEquals(expectedList, observableComics)
+        assertEquals(expectedList, listOfComics)
     }
 }

@@ -4,13 +4,13 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jameshayward.marvelapp.domain.comic.Comic
 import com.jameshayward.marvelapp.domain.comic.Thumbnail
 import com.jameshayward.marvelapp.domain.comicslist.usecase.GetComicsListUseCase
-import com.jameshayward.marvelapp.domain.common.usecase.UseCaseObservable
+import com.jameshayward.marvelapp.domain.common.usecase.UseCaseSingle
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
-import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.SingleSubject
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -26,9 +26,11 @@ class ComicsListViewModelTest {
     @MockK
     private lateinit var compositeDisposable: CompositeDisposable
 
-    private val comicsSubject = PublishSubject.create<List<Comic>>()
+    private val comicsSubject = SingleSubject.create<List<Comic>>()
     private lateinit var comicsListViewModel: ComicsListViewModel
     private lateinit var comicsList: List<Comic>
+
+    private val emptyList: List<Comic> = emptyList()
 
     @Before
     fun setUp() {
@@ -41,12 +43,10 @@ class ComicsListViewModelTest {
         comicsListViewModel.comicsList.observeForever { t -> comicsList = t }
     }
 
-    private val emptyList: List<Comic> = emptyList()
-
     @Test
     fun `GIVEN an empty list returned WHEN action refresh THEN comicList LiveData contains empty list`() {
-        every { getComicsListUseCase.execute(UseCaseObservable.None) } returns
-                Observable.just(emptyList)
+        every { getComicsListUseCase.execute(UseCaseSingle.None) } returns
+                Single.just(emptyList)
 
         comicsListViewModel.actionRefresh()
 
@@ -61,8 +61,8 @@ class ComicsListViewModelTest {
             Comic(2, "comic3", 1000, "120398!__!_@_@_", Thumbnail("http://www.example.com/banana", "jpg"))
         )
 
-        every { getComicsListUseCase.execute(UseCaseObservable.None) } returns
-                Observable.just(listOfComics)
+        every { getComicsListUseCase.execute(UseCaseSingle.None) } returns
+                Single.just(listOfComics)
 
         comicsListViewModel.actionRefresh()
 

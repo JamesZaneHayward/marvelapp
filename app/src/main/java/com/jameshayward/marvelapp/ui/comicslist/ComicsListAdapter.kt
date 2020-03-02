@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jameshayward.marvelapp.R
 import com.jameshayward.marvelapp.domain.comic.Comic
-import com.squareup.picasso.Picasso
+import com.jameshayward.marvelapp.ui.common.loadImage
 
 
 class ComicListAdapter(items: List<Comic>, private val context: Context) :
@@ -92,7 +92,7 @@ class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         primaryText.text = item.title
         secondaryText.text =  item.description
         if (item.thumbnail.path.isNotEmpty()) {
-            Picasso.with(itemView.context).load(item.thumbnail.path + "/standard_xlarge.jpg").into(icon)
+            icon.loadImage(item.thumbnail.path + "/standard_xlarge.jpg")
         }
     }
 }

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.jameshayward.marvelapp.R
 import com.jameshayward.marvelapp.presentation.common.ViewModelFactory
 import com.jameshayward.marvelapp.presentation.randomhero.RandomHeroViewModel
-import com.squareup.picasso.Picasso
+import com.jameshayward.marvelapp.ui.common.loadImage
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_random_hero.*
 import javax.inject.Inject
@@ -40,7 +40,7 @@ class RandomHeroFragment : DaggerFragment() {
             text_random_hero.text = it.name
             text_random_hero_description.text = it.description
             if (it.thumbnail.path.isNotEmpty()) {
-                Picasso.with(context).load(it.thumbnail.path + "/standard_large.jpg").into(img_random_hero)
+                img_random_hero.loadImage(it.thumbnail.path + "/standard_large.jpg")
             }
         })
     }

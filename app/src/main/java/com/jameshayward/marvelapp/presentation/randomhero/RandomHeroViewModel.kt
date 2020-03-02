@@ -1,5 +1,7 @@
 package com.jameshayward.marvelapp.presentation.randomhero
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jameshayward.marvelapp.common.BaseViewModel
 import com.jameshayward.marvelapp.common.addTo
@@ -11,18 +13,24 @@ import kotlin.random.Random
 
 class RandomHeroViewModel @Inject constructor(
     private val getRandomHeroUseCase: GetRandomHeroUseCase
-): BaseViewModel() {
+) : BaseViewModel() {
 
-    val randomHero = MutableLiveData<Hero>().apply {
+    val randomHero: LiveData<Hero>
+        get() = _randomHero
+
+    private val _randomHero = MutableLiveData<Hero>().apply {
         value = Hero("Find your new favourite Comic Book Hero", Thumbnail("", ""), "")
     }
 
     fun getRandomHero() {
         getRandomHeroUseCase
             .execute(HeroIds.idList[Random.nextInt(0, HeroIds.size)].toString())
-            .subscribe {
-                randomHero.postValue(it)
-            }
+            .subscribe({ hero ->
+                _randomHero.postValue(hero)
+            },
+                { throwable ->
+                    Log.d("error", throwable.message)
+                })
             .addTo(disposables)
     }
 }
